@@ -3,25 +3,28 @@ import styled from 'styled-components';
 
 
 const Container = styled.div`
-  width: 100px;
-  background: #ddd;
+  ${'' /* background: #ddd; */}
   float: left;
-  text-align: center;
   padding-top: 16px;
   padding-bottom: 16px;
   position: relative;
+  z-index: 1000000000;
   :hover{
-    background: #bbb;
     cursor: pointer;
-    color: white;
     font-weight: bold;
+    background: #1E86F3;
+    color: white;
+  }
+  span{
+    padding-left: 20px;
+    padding-right: 20px;
   }
 `
 
 export default class NavItem extends React.Component{
   render(){
     return (
-        <Container>
+        <Container className="NavItem" onClick={this.props.onClick && this.props.onClick}>
           <span>{this.props.children}</span>
           {this.props.hoverMenu && this.props.hoverMenu}
         </Container>

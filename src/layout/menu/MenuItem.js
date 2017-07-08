@@ -6,15 +6,14 @@ import styled from "styled-components";
 // Styles
 const Container = styled.div`
   width: 100%;
-  background: transparent;
   float: left;
-  text-align: center;
   padding-top: 16px;
   padding-bottom: 16px;
-  position: relative;
-  &:hover{
-    background: #bbb;
-    cursor: pointer;
+  font-weight: normal;
+  visibility: hidden;
+  background: rgba(255,255,255,0.9);
+  :hover{
+    background: #1E86F3;
     color: white;
     font-weight: bold;
   }
@@ -23,8 +22,8 @@ const Container = styled.div`
 export default class MenuItem extends React.Component {
   render() {
     return (
-      <Container>
-        MenuItem
+      <Container className="MenuItem" onClick={this.props.onClick && this.props.onClick}>
+        <span>{this.props.children}</span>
       </Container>
     );
   }

@@ -6,13 +6,13 @@ import NavItem from './layout/navigation/NavItem'
 
 import Menu from './layout/menu/Menu'
 import MenuItem from './layout/menu/MenuItem'
-import MenuFolder from './layout/menu/MenuFolder'
+import MenuSplitter from './layout/menu/MenuSplitter';
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
+import Dock from './dock/Dock'
+
+import Desktop from './window/Desktop'
+
+import user from './config/user'
 
 const Container = styled.div`
   padding: 0px;
@@ -22,23 +22,56 @@ const Container = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  font-family: Helvetica;
+  background-image: url(${(props)=>props.wallpaper});
+  background-size: contain;
+  overflow: hidden;
 `;
 
 export default class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      desktop:{
+        items: [
+          {
+            type: 'folder',
+            title: 'Some folder'
+          },{
+            type: 'folder',
+            title: 'Some folder 2'
+          },{
+            type: 'folder',
+            title: 'Some folder 3'
+          }
+        ]
+      }
+    }
+  }
   render() {
     const HomeMenu = (
       <Menu>
-        <MenuItem>Hello World</MenuItem>
-        <MenuItem>Hello World</MenuItem>
-        {/* <MenuFolder>Hello World</MenuFolder> */}
+        <MenuItem onClick={() => alert('What do you want to open')}>Open</MenuItem>
+        <MenuItem>Save Log</MenuItem>
+        <MenuItem>Rescan</MenuItem>
+        <MenuItem>Preferences</MenuItem>
+        {/* <MenuSplitter /> */}
+        <MenuItem onClick={() => alert('You cannot quit this app')}>Quit</MenuItem>
       </Menu>
     );
     return (
-      <Container>
-        <Navigation>
-          <NavItem hoverMenu={HomeMenu}>Home</NavItem>
-          <NavItem>Search</NavItem>
+      <Container wallpaper={user.config.desktop.wallpaper && user.config.desktop.wallpaper}>
+
+        <Navigation title={'ReactOS'}>
+          <NavItem hoverMenu={HomeMenu}>File</NavItem>
+          <NavItem onClick={() => alert('what')}>Edit</NavItem>
+          <NavItem>View</NavItem>
+          <NavItem hoverMenu={HomeMenu}>History</NavItem>
         </Navigation>
+        
+        <Desktop items={this.state.desktop.items}/>
+
+        {/* <Dock /> */}
       </Container>
     );
   }
