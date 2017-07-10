@@ -60,7 +60,7 @@ export default class Navigation extends Component {
         {this.props.title && <Title><span>{this.props.title}</span></Title>}
         {this.props.children}
         <ClockContainer>
-          <span><Clock format={'ddd hh:MM'} ticking={true} timezone={'US/Pacific'} /></span>
+          <span><Clock format={'ddd hh:MM'} ticking={true} timezone={'US/Eastern'} /></span>
         </ClockContainer>
       </Container>
     );

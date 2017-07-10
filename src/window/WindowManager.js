@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import styled from 'styled-components'
 import { Window, View, TitleBar, Toolbar, Text } from 'react-desktop/macOs';
-
+import Browser from './../apps/WebBrowser/Browser'
 
 export default class WindowManager extends Component{
   constructor(){
@@ -43,27 +43,15 @@ export default class WindowManager extends Component{
   }
 
   exposeThisWindow = (currentWindow) => {
-    // console.log(`
-    //   I am this windowNumber:
-    //   I am this zIndex:
-    //   I want to be:
-    // `)
     let windows = this.state.windows;
     let windowCount = this.state.windows.length;
     let cloneDesiredWindow = windows[currentWindow]
+    // remove current window from list
     windows.splice(currentWindow, 1);
+    // add window back to the window list
     windows.unshift(cloneDesiredWindow);
-
     console.log(windowCount, currentWindow + 1 , this.moveElementInArray(windows, 1, -1))
     this.setState({windows})
-  }
-  orderWindows = () => {
-    let state = this.state;
-    this.state.windows && this.state.windows.map((win, i)=>{
-      state.windows[i].zIndex = this.state.zIndexStart + i - 1;
-      console.log(state);
-    })
-    this.setState({state});
   }
   render(){
     const WindowContainer = styled.div`
@@ -71,16 +59,21 @@ export default class WindowManager extends Component{
       height: auto;
       z-index: ${(props)=>  this.state.zIndexStart - props.stack};
       position: absolute;
-      top: ${(props)=>  150 - props.stack * 20}px;
-      left: ${(props)=>  150 - props.stack * 20}px;
+      top: ${(props) => props.top }px;
+      left: ${(props) =>  props.left}px;
     `
     return (
       <div>
-        <button onClick={this.orderWindows}>re-order</button>
         {
           this.state.windows && this.state.windows.map((win, i)=>{
             return (
-              <WindowContainer stack={(i + 1)} key={i} onClick={() => this.exposeThisWindow(i)}>
+              <WindowContainer
+                stack={(i + 1)}
+                key={i}
+                onClick={() => this.exposeThisWindow(i)}
+                top={180 - (i + 1) * 20}
+                left={180 - (i + 1) * 20}
+                >
                 <Window
                    chrome
                    height="300px"
