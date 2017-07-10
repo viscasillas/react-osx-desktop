@@ -8,7 +8,7 @@ import user from '../../config/user'
 const Container = styled.div`
   width: 100%;
   height: ${user.config.desktop.toolbar.height}px;
-  background: rgba(255,255,255,0.9);
+  ${'' /* background: rgba(255,255,255,0.9); */}
   position: relative;
   font-weight: normal;
   visibility: hidden;

@@ -71,6 +71,7 @@ export default class App extends Component {
 
         <Desktop items={this.state.desktop.items}/>
 
+
         {/* <Dock /> */}
       </Container>
     );

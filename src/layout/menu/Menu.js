@@ -18,7 +18,7 @@ const Container = styled.div`
     bottom: 0;
     padding-top: ${user.config.desktop.toolbar.height}px;
     .MenuItems{
-      background: rgba(255,255,255,8.5);
+      background: rgba(255,255,255,0.85);
       height: auto;
     }
     .MenuSplitter{

@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import ReactGridLayout from 'react-grid-layout';
 import $ from 'jquery';
 import Window from './Window'
+import WindowManager from './WindowManager';
+
 const Container = styled.div`
   padding-left:10px;
   height: 100%;
@@ -74,6 +76,9 @@ export default class Desktop extends Component {
         {/* <Window>
           <h1>Hello</h1>
         </Window> */}
+        <WindowManager>
+          test
+        </WindowManager>
         {this.state.items &&
           <ReactGridLayout className="layout" layout={this.state.items} cols={12} rowHeight={50} width={window.innerWidth}>
             {this.renderDesktopItems()}
