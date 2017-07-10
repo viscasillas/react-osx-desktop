@@ -62,13 +62,13 @@ export default class App extends Component {
     return (
       <Container wallpaper={user.config.desktop.wallpaper && user.config.desktop.wallpaper}>
 
-        <Navigation title={'ReactOS'}>
+        <Navigation title={user.config.desktop.toolbar.title}>
           <NavItem hoverMenu={HomeMenu}>File</NavItem>
           <NavItem onClick={() => alert('what')}>Edit</NavItem>
           <NavItem>View</NavItem>
           <NavItem hoverMenu={HomeMenu}>History</NavItem>
         </Navigation>
-        
+
         <Desktop items={this.state.desktop.items}/>
 
         {/* <Dock /> */}

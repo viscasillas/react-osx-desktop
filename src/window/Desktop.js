@@ -11,12 +11,18 @@ const Container = styled.div`
 const Folder = styled.div`
   width: auto;
   height: auto;
-  ${'' /* background:orange; */}
+  background: transparent;
   text-align: center;
   color: white;
+  border: 1px solid transparent;
   :hover{
-    color: blue;
     cursor: pointer;
+    border: 1px solid #576685;
+    background: rgba(0,0,0,0.2);
+    border-radius: 5px;
+    span{
+      color: palevioletred;
+    }
   }
   span, img{
     display: block;
@@ -64,10 +70,10 @@ export default class Desktop extends Component {
   }
   render(){
     return (
-      <Container className="resize-container">
-        <Window>
+      <Container>
+        {/* <Window>
           <h1>Hello</h1>
-        </Window>
+        </Window> */}
         {this.state.items &&
           <ReactGridLayout className="layout" layout={this.state.items} cols={12} rowHeight={50} width={window.innerWidth}>
             {this.renderDesktopItems()}

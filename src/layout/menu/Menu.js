@@ -10,13 +10,17 @@ const Container = styled.div`
   top: 0;
   color: black;
   background: transparent;
-  padding-top: 0;
   height: ${user.config.desktop.toolbar.height}px;
-  width: 200px;
+  width: 100px;
   z-index: 1000000000;
   &:hover{
+    width: 200px;
     bottom: 0;
-    padding-top:${user.config.desktop.toolbar.height}px;
+    padding-top: ${user.config.desktop.toolbar.height}px;
+    .MenuItems{
+      background: rgba(255,255,255,8.5);
+      height: auto;
+    }
     .MenuSplitter{
       background: #ccc;
     }
@@ -31,11 +35,18 @@ const Container = styled.div`
   }
 `;
 
+const MenuItems = styled.div`
+  padding-top: ${user.config.desktop.toolbar.paddingBottom}px;
+  height: 0px;
+`
+
 export default class Menu extends React.Component {
   render() {
     return (
       <Container className="Menu">
-        {this.props.children}
+        <MenuItems className="MenuItems">
+          {this.props.children}
+        </MenuItems>
       </Container>
     );
   }
